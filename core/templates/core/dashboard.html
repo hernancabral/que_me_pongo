@@ -16,14 +16,14 @@
         <li>{{ legs }}</li>
     </ul>
     <h2>Como te sentiste con la recomendacion de hoy?</h2>
-    <form action="/feedback/" method="post">
+    <form action="{% url 'feedback' %}" method="post">
         {% csrf_token %}
-      <input type="radio" id="calor" name="feedback" value="calor">
+      <input type="radio" id="calor" name="feedback" value="1" required>
       <label for="calor">Calor</label><br>
-      <input type="radio" id="ok" name="feedback" value="ok">
+      <input type="radio" id="ok" name="feedback" value="0">
       <label for="ok">Ok</label><br>
-      <input type="radio" id="frio" name="feedback" value="frio">
-      <label for="frio">Frio</label>
+      <input type="radio" id="frio" name="feedback" value="-1">
+      <label for="frio">Frio</label><br>
         <input type="submit">
     </form>
 </body>

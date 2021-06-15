@@ -4,4 +4,4 @@ from core.models import UserBias
 
 @admin.register(UserBias)
 class UserBiasAdmin(admin.ModelAdmin):
-    list_display = ['user', 'head_bias', 'body_bias', 'legs_bias']
+    list_display = ['user', 'head_bias', 'body_bias', 'legs_bias', 'created_at']

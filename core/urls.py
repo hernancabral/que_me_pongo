@@ -4,8 +4,8 @@ from core import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    # url(r"^accounts/", include("django.contrib.auth.urls")),
-    path('', views.index, name='index'),
+    url(r"^accounts/", include("django.contrib.auth.urls")),
+    path('', views.IndexView.as_view(), name='index'),
     path('dashboard/', login_required(views.DashboardView.as_view()), name='dashboard'),
     path('feedback/', login_required(views.FeedbackView.as_view()), name='feedback'),
 ]
