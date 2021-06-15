@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Que me pongo?</h1>
+    <p>Hoy hace {{ temperature }} grados</p>
+    <p>Te recomiendo que te pongas:</p>
+    <ul>
+        <li>{{ head }}</li>
+        <li>{{ body }}</li>
+        <li>{{ legs }}</li>
+    </ul>
+    <h2>Como te sentiste con la recomendacion de hoy?</h2>
+    <form action="/feedback/" method="post">
+        {% csrf_token %}
+      <input type="radio" id="calor" name="feedback" value="calor">
+      <label for="calor">Calor</label><br>
+      <input type="radio" id="ok" name="feedback" value="ok">
+      <label for="ok">Ok</label><br>
+      <input type="radio" id="frio" name="feedback" value="frio">
+      <label for="frio">Frio</label>
+        <input type="submit">
+    </form>
+</body>
+</html>
