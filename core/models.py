@@ -1,13 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from core.utils import fields
 
 
 class UserBias(models.Model):
     user = models.ForeignKey(User, related_name='bias', on_delete=models.CASCADE)
-    head_bias = models.IntegerField(default=0)
-    body_bias = models.IntegerField(default=0)
-    legs_bias = models.IntegerField(default=0)
+    bias = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
@@ -25,6 +22,7 @@ class UserBias(models.Model):
 
 class Recommendation:
     @classmethod
+    # TODO: add recommendation engine
     def get_recommendation(cls, weather, user_bias):
         pass
 

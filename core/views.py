@@ -27,10 +27,10 @@ class FeedbackView(View):
     # TODO: feedback form
     def post(self, request):
         bias = request.POST['feedback']
+        modifier = request.POST['weather_accuracy']
         last_bias = models.UserBias.get_latest_bias_for_user(request.user.id)
-        new_head_bias = last_bias.head_bias + int(bias)
-        new_body_bias = last_bias.body_bias + int(bias)
-        new_legs_bias = last_bias.legs_bias + int(bias)
-        new_bias = models.UserBias(user=request.user, head_bias=new_head_bias, body_bias=new_body_bias, legs_bias=new_legs_bias)
-        new_bias.save()
+        bias = bias * int(modifier)
+        new_bias = last_bias.bias + int(bias)
+        new_user_bias = models.UserBias(user=request.user, bias=new_bias)
+        new_user_bias.save()
         return render(request, 'core/feedback.html')
