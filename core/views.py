@@ -34,8 +34,23 @@ class FeedbackView(View):
     def post(self, request):
         bias = request.POST['feedback']
         modifier = request.POST['weather_accuracy']
+        if modifier == 'OK':
+            bias = float(bias)
+        elif modifier == 'True': #mas calor
+            if bias == '2': #calor
+                bias = float(bias) * -0.5
+            elif bias == '-2': #frio
+                bias = float(bias) * 1.5
+            elif bias == '0':
+                bias = float(bias) + 1
+        elif modifier == 'False': #mas frio
+            if bias == '2': #calor
+                bias = float(bias) * 1.5
+            elif bias == '-2': #frio
+                bias = float(bias) * 0.5
+            elif bias == '0':
+                bias = float(bias) - 1
         last_bias = models.UserBias.get_latest_bias_for_user(request.user.id)
-        bias = float(bias) * float(modifier)
         new_bias = last_bias.bias + bias
         new_user_bias = models.UserBias(user=request.user, bias=int(new_bias))
         new_user_bias.save()

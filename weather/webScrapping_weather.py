@@ -30,6 +30,7 @@ def get_data():
     weather = True
     second_none_flag = False
 
+    print(data)
     while weather:
         weather = get_obj(day, data)
         if weather:
