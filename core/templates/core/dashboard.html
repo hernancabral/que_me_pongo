@@ -91,10 +91,11 @@
             <p>Hoy hace {{ temperature }} grados</p>
             <p>Te recomiendo que te pongas:</p>
             <ul>
-                <li>{{ head }}</li>
-                <li>{{ body }}</li>
-                <li>{{ legs }}</li>
-                <li>{{ rain }}</li>
+                <li>Cabeza: {{ head }}</li>
+                <li>Cuerpo: {{ body }}</li>
+                <li>Piernas: {{ legs }}</li>
+                <li>Pies: {{ feet }}</li>
+                <li>Paraguas: {{ rain }}</li>
             </ul>
 
             <div class="d-flex justify-content-center form_container">
@@ -102,13 +103,13 @@
                     <h2 id="form-title">Como te sentiste con la recomendacion de hoy?</h2>
                     {% csrf_token %}
                     <input type="radio" id="calor" name="feedback" value="1" required>
-                    <label for="calor">Calor</label><br>
+                    <label for="calor">Tuve calor</label><br>
                     <input type="radio" id="ok" name="feedback" value="0">
                     <label for="ok">Ok</label><br>
                     <input type="radio" id="frio" name="feedback" value="-1">
-                    <label for="frio">Frio</label><br>
+                    <label for="frio">Tuve frio</label><br>
                     <h2 id="form-title">Que tan precisa fue nuestra prediccion de clima?</h2>
-                    <input type="radio" id="mas_calor" name="weather_accuracy" value="1.5" required>
+                    <input type="radio" id="mas_calor" name="weather_accuracy" value="0.5" required>
                     <label for="mas_calor">Hizo mas calor</label><br>
                     <input type="radio" id="correcto" name="weather_accuracy" value="1">
                     <label for="correcto">Ok</label><br>

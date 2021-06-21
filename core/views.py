@@ -23,6 +23,7 @@ class DashboardView(View):
                    'head': recommended_clothes['head'],
                    'body': recommended_clothes['body'],
                    'legs': recommended_clothes['legs'],
+                   'feet': recommended_clothes['feet'],
                    'rain': recommended_clothes['rain']
                    }
         return render(request, 'core/dashboard.html', context)

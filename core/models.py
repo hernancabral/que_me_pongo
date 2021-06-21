@@ -29,6 +29,7 @@ class Recommendation:
         head = Clothes.objects.filter(type='head', min_temperature__lte=temperature).order_by('min_temperature').last()
         body = Clothes.objects.filter(type='body', min_temperature__lte=temperature).order_by('min_temperature').last()
         legs = Clothes.objects.filter(type='legs', min_temperature__lte=temperature).order_by('min_temperature').last()
+        feet = Clothes.objects.filter(type='feet', min_temperature__lte=temperature).order_by('min_temperature').last()
 
         recommendation = {}
         if head is not None:
@@ -43,6 +44,10 @@ class Recommendation:
             recommendation['legs'] = legs.description
         else:
             recommendation['legs'] = 'No tengo nada para recomendarte'
+        if feet is not None:
+            recommendation['feet'] = feet.description
+        else:
+            recommendation['feet'] = 'No tengo nada para recomendarte'
         if rain:
             recommendation['rain'] = 'Lleva paraguas'
         else:
