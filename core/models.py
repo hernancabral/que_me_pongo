@@ -1,3 +1,5 @@
+import csv
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -22,10 +24,41 @@ class UserBias(models.Model):
 
 class Recommendation:
     @classmethod
-    # TODO: add recommendation engine
-    def get_recommendation(cls, weather, user_bias):
-        pass
+    def get_recommendation(cls, temperature: int, rain: bool, user_bias: int):
+        temperature = temperature + user_bias
+        head = Clothes.objects.filter(type='head', min_temperature__lte=temperature).order_by('min_temperature').last()
+        body = Clothes.objects.filter(type='body', min_temperature__lte=temperature).order_by('min_temperature').last()
+        legs = Clothes.objects.filter(type='legs', min_temperature__lte=temperature).order_by('min_temperature').last()
+
+        recommendation = {}
+        if head is not None:
+            recommendation['head'] = head.description
+        else:
+            recommendation['head'] = 'No tengo nada para recomendarte'
+        if body is not None:
+            recommendation['body'] = body.description
+        else:
+            recommendation['body'] = 'No tengo nada para recomendarte'
+        if legs is not None:
+            recommendation['legs'] = legs.description
+        else:
+            recommendation['legs'] = 'No tengo nada para recomendarte'
+        if rain:
+            recommendation['rain'] = 'Lleva paraguas'
+        else:
+            recommendation['rain'] = 'No lleves paraguas'
+
+        return recommendation
 
 
 class Clothes(models.Model):
-    pass
+    description = models.CharField(max_length=50, default='')
+    type = models.CharField(max_length=50, default='')
+    min_temperature = models.IntegerField(default=0)
+
+    @classmethod
+    def populate_clothes_db(cls):
+        with open('utils/clothes_data.csv', newline='') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=';', quotechar=';')
+            for row in spamreader:
+                Clothes.objects.create(description=row[0], type=row[1], min_temperature=row[2])
