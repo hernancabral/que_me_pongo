@@ -88,7 +88,7 @@
     <div class="d-flex justify-content-center h-100">
         <div class="user_card"><h1 id="form-title">Que me pongo?</h1>
 
-            <p>Hoy hace {{ temperature }} grados</p>
+            <p>Hoy hace {{ temperature }} grados, pero yo se que sentis {{ bias }}</p>
             <p>Te recomiendo que te pongas:</p>
             <ul>
                 <li>Cabeza: {{ head }}</li>
@@ -102,11 +102,11 @@
                 <form action="{% url 'feedback' %}" method="post">
                     <h2 id="form-title">Como te sentiste con la recomendacion de hoy?</h2>
                     {% csrf_token %}
-                    <input type="radio" id="calor" name="feedback" value="1" required>
+                    <input type="radio" id="calor" name="feedback" value="2" required>
                     <label for="calor">Tuve calor</label><br>
                     <input type="radio" id="ok" name="feedback" value="0">
                     <label for="ok">Ok</label><br>
-                    <input type="radio" id="frio" name="feedback" value="-1">
+                    <input type="radio" id="frio" name="feedback" value="-2">
                     <label for="frio">Tuve frio</label><br>
                     <h2 id="form-title">Que tan precisa fue nuestra prediccion de clima?</h2>
                     <input type="radio" id="mas_calor" name="weather_accuracy" value="0.5" required>

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class UserBias(models.Model):
     user = models.ForeignKey(User, related_name='bias', on_delete=models.CASCADE)
-    bias = models.IntegerField(default=0)
+    bias = models.FloatField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
@@ -63,7 +63,7 @@ class Clothes(models.Model):
 
     @classmethod
     def populate_clothes_db(cls):
-        with open('utils/clothes_data.csv', newline='') as csvfile:
+        with open('core/utils/clothes_data.csv', newline='') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=';', quotechar=';')
             for row in spamreader:
                 Clothes.objects.create(description=row[0], type=row[1], min_temperature=row[2])

@@ -20,6 +20,7 @@ class DashboardView(View):
         recommended_clothes = models.Recommendation.get_recommendation(int(today_weather['temperature']),
                                                                        today_weather['rain'], user_bias.bias)
         context = {'temperature': int(today_weather['temperature']),
+                   'bias': int(user_bias.bias + int(today_weather['temperature'])),
                    'head': recommended_clothes['head'],
                    'body': recommended_clothes['body'],
                    'legs': recommended_clothes['legs'],
@@ -35,7 +36,7 @@ class FeedbackView(View):
         modifier = request.POST['weather_accuracy']
         last_bias = models.UserBias.get_latest_bias_for_user(request.user.id)
         bias = float(bias) * float(modifier)
-        new_bias = last_bias.bias + int(bias)
+        new_bias = last_bias.bias + bias
         new_user_bias = models.UserBias(user=request.user, bias=int(new_bias))
         new_user_bias.save()
         return render(request, 'core/feedback.html')

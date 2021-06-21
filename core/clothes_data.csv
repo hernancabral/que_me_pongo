@@ -1,0 +1,19 @@
+Ropa;Tipo;Temp minima
+Gorro (Beanie);head;-50
+Sin gorro;head;15
+Gorra (Visera);head;25
+Remera térmica, Buzo, Campera (nieve);body;-50
+Remera termica, Buzo, Campera;body;0
+Remera manga larga, Buzo, Campera;body;10
+Remera manga larga, Buzo;body;15
+Remera manga larga;body;20
+Remera manga corta;body;25
+Malla;body;30
+Pantalon de nieve;legs;-50
+Calza termica, Pantalon;legs;5
+Jean o Calza;legs;15
+Bermuda o short o pollera;legs;25
+Malla;legs;30
+Ojotas;feet;30
+Zapatillas;feet;7
+Borcegos;feet;-50
