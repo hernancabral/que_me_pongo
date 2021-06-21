@@ -1,6 +1,7 @@
 from typing import Dict, Any
-import arrange_data
 import datetime as dt
+
+from weather import arrange_data
 
 
 class WeatherService:

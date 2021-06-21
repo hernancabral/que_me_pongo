@@ -1,6 +1,6 @@
 import datetime as dt
-import phrases
-import webScrapping_weather
+from weather import phrases, webScrapping_weather
+
 
 def get_forecast():
     forecast = webScrapping_weather.get_data()
